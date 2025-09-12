@@ -19,3 +19,4 @@ This setup contains all of my dotfiles for MacOS, Gentoo Linux, and Arch Linux. 
 |Tmux    |✅     |✅      |✅     
 |Ghostty |✅     |✅      |✅
 |Hyprland|ℹ️     |✅      |⚠️
+|yt-dlp  |✅     |✅      |✅
