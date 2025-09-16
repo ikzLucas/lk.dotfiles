@@ -1,6 +1,6 @@
 # Lucas's dotfiles
 
-This setup contains all of my dotfiles for MacOS, Gentoo Linux, and Arch Linux. This setup is intended to function out of one repo, being agnostic for the operating systems listed. Other linux distros are untested and YMMV. Windows support soon (never)
+This setup contains all of my dotfiles for MacOS, Gentoo Linux, and Arch Linux. This setup is intended to function out of one repo, being agnostic for the operating systems listed. Other linux distros are untested and YMMV, but anything using systemd or OpenRC with user services (OpenRC>=0.62) should be fine. Windows support soon (never)
 
 *Current contents:*
 
@@ -18,5 +18,5 @@ This setup contains all of my dotfiles for MacOS, Gentoo Linux, and Arch Linux. 
 |Neovim  |✅     |✅      |✅     
 |Tmux    |✅     |✅      |✅     
 |Ghostty |✅     |✅      |✅
-|Hyprland|ℹ️     |✅      |⚠️
+|Hyprland|ℹ️     |✅      |✅
 |yt-dlp  |✅     |✅      |✅
