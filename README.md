@@ -12,11 +12,12 @@ This setup contains all of my dotfiles for MacOS, Gentoo Linux, and Arch Linux. 
 
 ℹ️ - Not Applicable
 
-| Config | MacOS | Gentoo | Arch |
-|:------:|:-----:|:------:|:----:|
-|Zsh     |✅     |⚠️      |⚠️     
-|Neovim  |✅     |✅      |✅     
-|Tmux    |✅     |✅      |✅     
-|Ghostty |✅     |✅      |✅
-|Hyprland|ℹ️     |✅      |✅
-|yt-dlp  |✅     |✅      |✅
+| Config           | MacOS | Gentoo | Arch |
+|:----------------:|:-----:|:------:|:----:|
+|Zsh               |✅     |⚠️      |⚠️     
+|Neovim            |✅     |✅      |✅     
+|Tmux              |✅     |✅      |✅     
+|Ghostty           |✅     |✅      |✅
+|Hyprland          |ℹ️     |✅      |✅
+|xdg-desktop-portal|ℹ️     |✅      |✅
+|yt-dlp            |✅     |✅      |✅
