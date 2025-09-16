@@ -21,3 +21,4 @@ This setup contains all of my dotfiles for MacOS, Gentoo Linux, and Arch Linux. 
 |Hyprland          |ℹ️     |✅      |✅
 |xdg-desktop-portal|ℹ️     |✅      |✅
 |yt-dlp            |✅     |✅      |✅
+|mpv               |✅     |✅      |✅
