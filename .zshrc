@@ -28,14 +28,23 @@ autoload -U compinit && compinit
 #############################
 ### Aliases and Functions ###
 #############################
+
+# Privledge escalation
+if command -v sudo >/dev/null 2>&1; then
+	ELEVATE=sudo
+elif command -v doas >/dev/null 2>&1; then
+	ELEVATE=doas
+fi
+
 # Shorthand for a couple things
 alias c='clear'	# Or just press Ctrl + L!
 alias ff='fastfetch'
 alias cff='clear && fastfetch'
 # Alias vim to the better vim
+alias svim='/usr/bin/vim'
 alias v='nvim'
 alias vim='nvim'
-alias sv='sudo nvim'
+alias sv="$ELEVATE nvim"
 # Colors - from Debian 12 default .bashrc
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'
