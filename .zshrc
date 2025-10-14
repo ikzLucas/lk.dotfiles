@@ -1,5 +1,5 @@
 # Lucas's Zsh config 
-# Version 25.8.r5
+# Version 25.10.r1
 
 PATH="$HOME/.local/bin:$PATH"
 
@@ -53,11 +53,7 @@ alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-# Extra LS commands
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -l'
-alias lla='ls -la'
+# Extra LS command shorthand
 alias lah='ls -lAh'
 # Easy cd by typing periods .
 alias ..='cd ../'
@@ -106,9 +102,8 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # A zsh prompt loosely based off Gentoo prompt with a few mods:
 # - Multicolor!
 # - VCS info 
-# - A clock on the right!
 # - Tweaked path and select prompts
-# lovely zsh prompt vcs tutorial @: https://salferrarello.com/zsh-git-status-prompt/
+# zsh prompt vcs tutorial @: https://salferrarello.com/zsh-git-status-prompt/
 lk_prompt_setup () {
 prompt_gentoo_prompt=${1:-'blue'}
 user_color=${2:-'132'}
@@ -142,8 +137,6 @@ path_prompt="%B%F{$prompt_gentoo_prompt}%1~"
 PS1="$base_prompt$path_prompt$vcs_prompt %# $post_prompt"
 PS2="$path_prompt %_> $post_prompt"
 PS3="$path_prompt ?# $post_prompt"
-
-RPROMPT="%F{99}%*%f" # Clock on the right
 }
 
 lk_prompt_setup "$@"
