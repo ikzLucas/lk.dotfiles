@@ -1,5 +1,5 @@
 # Lucas's Zsh config 
-# Version 25.10.r1
+# Version 25.10.r2
 
 PATH="$HOME/.local/bin:$PATH"
 
@@ -19,7 +19,7 @@ zinit wait lucid for \
     zdharma-continuum/fast-syntax-highlighting \
  blockf \
     zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start; bindkey '^f' autosuggest-accept" \
+ atload"!_zsh_autosuggest_start;" \
     zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
