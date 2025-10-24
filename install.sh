@@ -2,6 +2,11 @@
 
 # WARNING: This script assumes it is working in the dotfiles directory it was cloned to. Moving it will probably blow something up
 
+if ! command -v sudo >/dev/null 2>&1; then 
+   echo "Install sudo you dipstick"
+   exit 1
+fi
+
 # Install universal configs
 install_universal () {
    pushd home
