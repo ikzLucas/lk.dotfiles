@@ -1,25 +1,7 @@
 # Lucas's dotfiles
 
-This setup contains all of my dotfiles for MacOS and Gentoo Linux. This setup is intended to function out of one repo, being agnostic for both systems. Other linux distros are untested and YMMV, but anything using systemd or OpenRC with user services (OpenRC>=0.62) should be fine.
+Master repo for dotfiles on my Mac and Linux machines. Assumes you're using one of my computers, will probably break otherwise.
 
-*Current contents:*
-
-✅ - Fully Supported
-
-⚠️ - Support WIP, incomplete, or reduced functionality
-
-❌ - Unsupported or not working 
-
-ℹ️ - Not Applicable
-
-| Config           | MacOS | Gentoo |
-|:----------------:|:-----:|:------:|
-|Zsh               |✅     |⚠️      |
-|Neovim            |✅     |✅      |
-|Tmux              |✅     |✅      |
-|Ghostty           |✅     |✅      |
-|Hyprland          |ℹ️     |✅      |
-|xdg-desktop-portal|ℹ️     |✅      |
-|yt-dlp            |✅     |✅      |
-|mpv               |✅     |✅      |
-|btop              |✅     |✅      |
+```bash
+git clone --recurse-submodules https://github.com/ikzLucas/lk.dotfiles.git .dotfiles && cd .dotfiles && chmod +x install.sh && ./install.sh 
+```
