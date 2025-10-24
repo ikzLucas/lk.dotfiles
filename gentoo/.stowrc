@@ -1,0 +1,3 @@
+--dir=./
+--target=/
+--ignore='.stowrc'
