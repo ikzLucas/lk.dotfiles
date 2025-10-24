@@ -16,7 +16,18 @@ install_universal () {
 
 install_gentoo () {
    pushd gentoo
+   vendor=$(awk -F: '/vendor_id/ { print $2; exit }' /proc/cpuinfo | tr -d ' \t')
+   if [[ "$vendor" == "GenuineIntel" ]]; then
+      pushd desktop
+   elif [[ "$vendor" == "AuthenticAMD" ]]; then
+      echo "CPU vendor: AMD"
+      exit 1
+   else
+      echo "CPU vendor: Unknown ($vendor)"
+      exit 1
+   fi
    sudo stow .
+   popd
    popd
 }
 
