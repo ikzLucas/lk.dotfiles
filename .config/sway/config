@@ -16,6 +16,8 @@ exec blueman-applet &
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $shiftMod Mod4+Shift
+set $alt Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -27,12 +29,15 @@ set $term foot
 set $menu rofi -show drun -show-icons
 
 ### Output configuration
-#
+## - Desktop -
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output "Dell Inc. DELL S3422DWG 3P7XSH3" resolution 3440x1440@143.975hz allow_tearing yes adaptive_sync yes 
 #render_bit_depth 10
 output "Acer Technologies Acer XF270H B 0x90506CC0" pos -1920 0
+
+## - Thinkpad Z16 -
+output "Lenovo Group Limited 0x41B5 Unknown" adaptive_sync yes allow_tearing yes
 
 ### Idle configuration
 #
@@ -53,7 +58,9 @@ input type:touchpad {
      tap enabled
      natural_scroll enabled
      middle_emulation enabled
- }
+}
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
 input "1133:49970:Logitech_Gaming_Mouse_G502" {
 	accel_profile "flat"
 }
@@ -72,13 +79,13 @@ input * {
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Shift+Return exec $term
+    bindsym $shiftMod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+n kill
+    bindsym $shiftMod+n kill
 
     # Start your launcher
-    bindsym $mod+Space exec $menu
+    bindsym $alt+Space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -161,10 +168,10 @@ input * {
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+t floating toggle
+    bindsym $shiftMod+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+u focus mode_toggle
+    bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -237,4 +244,4 @@ bar {
 }
 
 include /etc/sway/config.d/*
-include /home/lk/sway/floating_rules
+include $HOME/.config/sway/floating_rules
