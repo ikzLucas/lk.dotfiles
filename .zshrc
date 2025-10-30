@@ -59,7 +59,21 @@ rm() { command rm -vi "${@}"; }        # Interactive and verbose output for rm, 
 cp() { command cp -vi "${@}"; }        # Prevents file overwrites and explains what is happening
 mv() { command mv -vi "${@}"; }        # EX: mv file file2 outputs "renamed file -> file2"
 
-alias up='brew update && brew outdated && brew upgrade && brew cleanup'
+_update_stuffs() {
+# check for sudo
+if ! command -v sudo >/dev/null 2>&1; then
+   echo "Install sudo you dingus"
+fi
+
+# check for Gentoo
+if [ $OSTYPE = linux-gnu ] && grep -q gentoo /etc/os-release; then
+   sudo emerge --ask --verbose --update --deep --newuse @world
+fi
+}
+
+
+
+alias up=_update_stuffs
 
 #####################
 ### Shell Options ###
