@@ -29,7 +29,7 @@ set $menu rofi -show drun -show-icons
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output "Dell Inc. DELL S3422DWG 3P7XSH3" resolution 3440x1440@143.975hz allow_tearing yes adaptive_sync yes 
 #render_bit_depth 10
 output "Acer Technologies Acer XF270H B 0x90506CC0" pos -1920 0
