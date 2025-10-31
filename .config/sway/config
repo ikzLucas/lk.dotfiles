@@ -5,7 +5,7 @@
 # Read `man 5 sway` for a complete reference.
 
 # If someone knows a non stupid way to make this work please let me know
-exec ./start-services.sh
+#exec ./start-services.sh
 exec mako &
 exec blueman-applet &
 exec foot --server
@@ -244,3 +244,4 @@ bar {
 
 include /etc/sway/config.d/*
 include $HOME/.config/sway/floating_rules
+include $HOME/.config/sway/50-systemd-user.conf
