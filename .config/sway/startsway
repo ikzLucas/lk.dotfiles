@@ -2,8 +2,6 @@
 #!/usr/bin/env bash
 
 export WLR_RENDERER=vulkan
-export XDG_SESSION_TYPE=wayland
-export XDG_CURRENT_DESKTOP=sway
 export _JAVA_AWT_WM_NONREPARENTING=1
 export GDK_BACKEND=wayland,x11
 export MOZ_ENABLE_WAYLAND=1
@@ -24,4 +22,4 @@ fi
 #ssh-agent
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-env XDG_SESSION_TYPE=wayland XDG_CURRENT_DESKTOP=sway dbus-run-session sway --unsupported-gpu
+sway --unsupported-gpu
