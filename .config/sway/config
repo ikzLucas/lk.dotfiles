@@ -9,6 +9,7 @@
 exec mako &
 exec blueman-applet &
 exec foot --server
+exec flatpak run org.flameshot.Flameshot
 
 ### Variables
 #
