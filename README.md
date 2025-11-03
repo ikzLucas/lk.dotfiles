@@ -17,7 +17,8 @@
 |Neovim            |✅     |✅      |
 |Tmux              |✅     |✅      |
 |Ghostty           |✅     |✅      |
-|Hyprland          |ℹ️     |✅      |
+|sway              |ℹ️     |✅      |
+|Niri              |ℹ️     |✅      |
 |xdg-desktop-portal|ℹ️     |✅      |
 |yt-dlp            |✅     |✅      |
 |mpv               |✅     |✅      |
