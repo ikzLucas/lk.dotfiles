@@ -65,13 +65,25 @@ if ! command -v sudo >/dev/null 2>&1; then
    echo "Install sudo you dingus"
 fi
 
-# check for Gentoo
-if [ $OSTYPE = linux-gnu ] && grep -q gentoo /etc/os-release; then
+# update Gentoo packages
+if command -v emerge >/dev/null 2>&1; then
    sudo emerge --ask --verbose --update --deep --newuse @world
 fi
+
+# update Homebrew packages
+if command -v brew >/dev/null 2>&1; then
+   brew update
+   brew outdated
+   brew upgrade
+   brew cleanup
+fi
+
+# update Flatpaks
+if command -v flatpak >/dev/null 2>&1; then
+   flatpak update
+   flatpak uninstall --unused
+fi
 }
-
-
 
 alias up=_update_stuffs
 

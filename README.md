@@ -34,7 +34,7 @@ Windows support in the future maybe
 
 | Config           | MacOS | Gentoo |
 |:----------------:|:-----:|:------:|
-|Zsh               |✅     |⚠️      |
+|Zsh               |✅     |✅      |
 |Neovim            |✅     |✅      |
 |Tmux              |✅     |✅      |
 |Ghostty           |✅     |ℹ️      |
