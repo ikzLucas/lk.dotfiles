@@ -1,0 +1,4 @@
+# */* -systemd elogind
+*/* -elogind systemd
+sys-apps/openrc -netifrc
+sys-apps/systemd elfutils xkb -boot -homed

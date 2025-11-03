@@ -1,0 +1,8 @@
+*/* kde plasma qt6 screencast -gnome
+kde-plasma/plasma-meta -X flatpak rdp oxygen-theme
+kde-plasma/plasma-login-sessions -X wayland
+net-misc/freerdp server
+dev-qt/qttools designer
+kde-apps/thumbnailers blender gettext mobi raw video
+kde-frameworks/kimageformats avif eps heif jpeg2k jpegxl openexr raw
+kde-plasma/plasma-firewall -ufw firewalld

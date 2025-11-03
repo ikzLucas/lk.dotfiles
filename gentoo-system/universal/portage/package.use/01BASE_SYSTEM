@@ -1,0 +1,20 @@
+# Wayland display server
+*/* wayland
+# Use distribution kernel (configured with /etc/kernel/config.d snippets)
+*/* dist-kernel
+# Dracut slow lol
+*/* -dracut ugrd
+# Bootloader - boring old grub these days
+*/* -refind grub
+# Sound server
+*/* pipewire sound-server pipewire-alsa pulseaudio bluetooth
+# Networking
+*/* networkmanager -netifrc samba
+# Vulkan support (will be ignored on nvidia)
+*/* vulkan vaapi
+
+# No idea what these do but portage complained
+*/* harfbuzz
+
+# Flags that suck balls
+*/* -telemetry -handbook -webengine

@@ -1,0 +1,13 @@
+# required by kde-misc/kweather-25.08.2::gentoo
+# required by kde-apps/kdeutils-meta-25.08.2::gentoo
+# required by kde-apps/kdeutils-meta (argument)
+>=dev-qt/qtpositioning-6.9.3 geoclue
+# required by media-libs/assimp-6.0.2::gentoo
+# required by @preserved-rebuild (argument)
+>=sys-libs/zlib-1.3.1-r1 minizip
+# required by media-libs/tiff-4.7.0-r1::gentoo[webp]
+# required by media-gfx/imagemagick-7.1.2.3-r1::gentoo[tiff]
+# required by app-misc/fastfetch-2.53.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/libwebp-1.5.0 abi_x86_32

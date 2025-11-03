@@ -1,0 +1,3 @@
+net-print/cups zeroconf
+net-print/cups-meta zeroconf
+net-dns/avahi -gtk

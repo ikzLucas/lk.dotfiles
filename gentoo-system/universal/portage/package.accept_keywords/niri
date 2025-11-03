@@ -1,0 +1,4 @@
+gui-wm/niri ~amd64
+gui-apps/fuzzel ~amd64
+gui-apps/xwayland-satellite ~amd64
+gui-apps/waybar ~amd64

@@ -27,19 +27,45 @@ install_linux () {
 
 # System level configs for Gentoo (Kernel + Portage config)
 install_gentoo () {
-   pushd gentoo
-   vendor=$(awk -F: '/vendor_id/ { print $2; exit }' /proc/cpuinfo | tr -d ' \t')
-   if [[ "$vendor" == "GenuineIntel" ]]; then
-      pushd desktop
-   elif [[ "$vendor" == "AuthenticAMD" ]]; then
-      echo "CPU vendor: AMD"
-      exit 1
-   else
-      echo "CPU vendor: Unknown ($vendor)"
-      exit 1
+   # Backup any existing kernel configs
+   if [ -d /etc/kernel/config.d ]; then
+      sudo cp -r /etc/kernel/config.d /etc/kernel/config.d.bak
+      sudo rm /etc/kernel/config.d/*
    fi
+
+   # Ensure git is installed before switching to git-based repositories
+   if ! command -v git; then
+      emerge --ask=n dev-vcs/git
+   fi
+
+   
+   pushd gentoo-system
+   
+   # Install configs compatible with (most) computers
+   # This will blow up systems with btrfs
+   # They deserve it
+   pushd universal
    sudo stow .
    popd
+   
+   # Configs for my desktop
+   if [ $(cat /etc/hostname) = chi ]; then
+      # Backup existing portage config
+      if [ -f /etc/portage/make.conf ]; then
+        sudo mv /etc/portage/make.conf /etc/portage/make.conf.old
+      fi
+      pushd chi
+      sudo stow .
+      popd
+   fi
+
+   # Configs for my thinkpad
+   if [ $(cat /etc/hostname) = raven ]; then
+      pushd raven
+      echo "TODO"
+      popd
+   fi
+
    popd
 }
 
@@ -52,8 +78,7 @@ if [ $OSTYPE = linux-gnu ]; then
 fi
 
 if [ $(cat /etc/os-release | grep ^ID) = 'ID=gentoo' ]; then
-   #install_gentoo
-   echo "gentoo wip"
+   install_gentoo
 fi
 
 pushd universal-home

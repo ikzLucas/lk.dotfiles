@@ -1,0 +1,2 @@
+app-admin/doas persist
+app-admin/sudo verify-sig offensive -sendmail
