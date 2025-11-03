@@ -4,7 +4,16 @@ The install script will automatically detect macOS, Gentoo, and generic linux di
 
 ### File Structure:
 
-TODO
+darwin-home -> macOS-specific user-level dotfiles
+
+gentoo-system -> gentoo portage / kernel configs
+
+linux-gnu -> linux-specific system-level configs
+
+linux-gnu -> linux-specific user-level dotfiles
+
+universal-home -> Mac/Linux agnostic dotfiles that work on both systems
+
 
 Windows support in the future maybe
 
