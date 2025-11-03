@@ -4,7 +4,7 @@ The install script will automatically detect macOS, Gentoo, and generic linux di
 
 Clone into .dotfiles and install:
 ```bash
-git clone https://github.com/ikzLucas/lk.dotfiles.git .dotfiles && chmod +x install.sh && ./install.sh
+git clone https://github.com/ikzLucas/lk.dotfiles.git ~/.dotfiles && cd ~/.dotfiles && chmod +x install.sh && ./install.sh
 ```
 
 ### File Structure:
