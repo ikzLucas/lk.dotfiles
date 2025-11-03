@@ -7,12 +7,12 @@ if ! command -v sudo >/dev/null 2>&1; then
    exit 1
 fi
 
-# Install universal configs
-install_universal () {
-   pushd home
+# Configs specific to macOS + apps I use on my mac
+install_darwin () {
+   pushd darwin-home
    stow .
-   popd
 }
+
 
 install_gentoo () {
    pushd gentoo
@@ -39,6 +39,6 @@ if [ $(cat /etc/os-release | grep ^ID) = 'ID=gentoo' ]; then
    install_gentoo
 fi
 
-
-
-install_universal
+if [ $OSTYPE = darwin ]; then
+	install_darwin
+fi
