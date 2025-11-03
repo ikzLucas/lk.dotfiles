@@ -1,5 +1,12 @@
 # Lucas's dotfiles
 
+The install script will automatically detect macOS, Gentoo, and generic linux distros and attempt to install relevant configs for each.
+
+### File Structure:
+
+TODO
+
+Windows support in the future maybe
 
 *Current contents:*
 
@@ -16,10 +23,9 @@
 |Zsh               |✅     |⚠️      |
 |Neovim            |✅     |✅      |
 |Tmux              |✅     |✅      |
-|Ghostty           |✅     |✅      |
+|Ghostty           |✅     |ℹ️      |
 |sway              |ℹ️     |✅      |
 |Niri              |ℹ️     |✅      |
 |xdg-desktop-portal|ℹ️     |✅      |
 |yt-dlp            |✅     |✅      |
 |mpv               |✅     |✅      |
-|btop              |✅     |✅      |

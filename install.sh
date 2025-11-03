@@ -8,12 +8,24 @@ if ! command -v sudo >/dev/null 2>&1; then
 fi
 
 # Configs specific to macOS + apps I use on my mac
+# stows configs from darwin-home/dot-config to ~/.config/
 install_darwin () {
    pushd darwin-home
    stow .
+   popd
 }
 
+# Generic Linux dotfiles / configs
+install_linux () {
+   pushd linux-home
+   stow .
+   popd
+   pushd linux-gnu
+   sudo stow .
+   popd
+}
 
+# System level configs for Gentoo (Kernel + Portage config)
 install_gentoo () {
    pushd gentoo
    vendor=$(awk -F: '/vendor_id/ { print $2; exit }' /proc/cpuinfo | tr -d ' \t')
@@ -31,14 +43,19 @@ install_gentoo () {
    popd
 }
 
+if [ $OSTYPE = darwin ]; then
+   install_darwin
+fi
+
 if [ $OSTYPE = linux-gnu ]; then
-	echo "detected generic loonix"
+   install_linux
 fi
 
 if [ $(cat /etc/os-release | grep ^ID) = 'ID=gentoo' ]; then
-   install_gentoo
+   #install_gentoo
+   echo "gentoo wip"
 fi
 
-if [ $OSTYPE = darwin ]; then
-	install_darwin
-fi
+pushd universal-home
+stow .
+popd

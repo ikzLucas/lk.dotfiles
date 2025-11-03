@@ -1,4 +1,3 @@
 --dir=./
---target=~/
+--target=/
 --ignore='.stowrc'
---dotfiles
