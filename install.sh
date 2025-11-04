@@ -62,7 +62,7 @@ install_gentoo () {
    # Configs for my thinkpad
    if [ $(cat /etc/hostname) = raven ]; then
       pushd raven
-      echo "TODO"
+      sudo stow .
       popd
    fi
 

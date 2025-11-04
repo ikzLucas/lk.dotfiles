@@ -1,0 +1,6 @@
+x11-libs/librdm video_cards_radeon
+# required by media-libs/mesa-25.1.7::gentoo[-video_cards_radeon,-video_cards_r300,video_cards_radeonsi,-video_cards_r600]
+# required by app-admin/bitwarden-desktop-bin-2025.7.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libdrm-2.4.125 video_cards_radeon
