@@ -27,14 +27,12 @@ install_linux () {
 
 # System level configs for Gentoo (Kernel + Portage config)
 install_gentoo () {
-   # Backup any existing kernel configs
-   if [ -d /etc/kernel/config.d ]; then
-      sudo cp -r /etc/kernel/config.d /etc/kernel/config.d.bak
-      sudo rm /etc/kernel/config.d/*
+   if ! [ -d /etc/kernel/config.d ]; then 
+      sudo mkdir /etc/kernel/config.d
    fi
 
    # Ensure git is installed before switching to git-based repositories
-   if ! command -v git; then
+   if ! command -v git >/dev/null 2>&1; then
       emerge --ask=n dev-vcs/git
    fi
 
