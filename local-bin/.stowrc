@@ -1,0 +1,3 @@
+--dir=./
+--target=~/.local/bin
+--ignore='stowrc'

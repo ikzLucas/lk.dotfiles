@@ -82,3 +82,8 @@ fi
 pushd universal-home
 stow .
 popd
+
+pushd local-bin
+chmod +x ./*
+stow .
+popd
