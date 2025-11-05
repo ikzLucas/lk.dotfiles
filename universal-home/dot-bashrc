@@ -17,7 +17,8 @@ fi
 
 # Put your fun stuff here.
 set -o vi
-source /usr/share/git/git-prompt.sh
-export PS1="\[$(tput setaf 14)\]\u\[$(tput setaf 15)\]@\[$(tput setaf 8)\]\h \[$(tput setaf 6)\]\w \[$(tput sgr0)\]$ "
+source $HOME/.dotfiles/scripts/git-prompt.sh
+export PS1='\[$(tput setaf 14)\]\u\[$(tput setaf 15)\]@\[$(tput setaf 8)\]\h \[$(tput setaf 6)\]\w\[$(tput sgr0)\] \[$(tput setaf 10)\]$(__git_ps1 "(%s) ")\[$(tput sgr0)\]\$ '
+
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PATH="$HOME/.local/bin:$PATH"
