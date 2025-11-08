@@ -31,14 +31,7 @@ zstyle ':completion::complete:*' use-cache 1
 #############################
 
 # Shorthand for a couple things
-alias c='clear'	# Or just press Ctrl + L!
-alias ff='fastfetch'
-alias cff='clear && fastfetch'
-# Alias vim to the better vim
-alias svim='/usr/bin/vim'
-alias v='nvim'
-alias vim='nvim'
-alias sv="sudo nvim"
+alias ff='clear && fastfetch'
 # Colors - from Debian 12 default .bashrc
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'
@@ -49,6 +42,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 # Extra LS command shorthand
 alias lah='ls -lAh'
+alias la='ls -lA'
 # Easy cd by typing periods .
 alias ..='cd ../'
 alias ...='cd ../../'
