@@ -6,3 +6,5 @@ dev-qt/qttools designer
 kde-apps/thumbnailers blender gettext mobi raw video
 kde-frameworks/kimageformats avif eps heif jpeg2k jpegxl openexr raw
 kde-plasma/plasma-firewall -ufw firewalld
+kde-plasma/plasma-workspace -fontconfig
+x11-misc/sddm -X

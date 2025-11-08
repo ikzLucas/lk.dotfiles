@@ -1,24 +1,73 @@
-# /etc/skel/.bashrc
-#
-# This file is sourced by all *interactive* bash shells on startup,
-# including some apparently interactive shells such as scp and rcp
-# that can't tolerate any output.  So make sure this doesn't display
-# anything or bad things will happen !
+# Lucas's Bash RC
+# Version 2025-11-04
 
-
-# Test for an interactive shell.  There is no need to set anything
-# past this point for scp and rcp, and it's important to refrain from
-# outputting anything in those cases.
 if [[ $- != *i* ]] ; then
-	# Shell is non-interactive.  Be done now!
 	return
 fi
 
+# Add local bin folder to PATH for distros that dont do this automagically
+export PATH="$HOME/.local/bin:$PATH"
 
-# Put your fun stuff here.
-set -o vi
+# -- Shell Environment --
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# -- Stuff I stole from Debian --
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# No duplicates or lines starting with spaces in history
+HISTCONTROL=ignoreboth
+# Append rather than overwrite history
+shopt -s histappend
+# Use ** to match a files and directories
+shopt -s globstar
+
+# -- Functions --
+_update_stuffs() {
+# check for sudo
+if ! command -v sudo >/dev/null 2>&1; then
+   echo "Install sudo you dingus"
+fi
+# update Gentoo packages
+if command -v emerge >/dev/null 2>&1; then
+   sudo emerge --ask --verbose --update --deep --newuse @world
+fi
+# update Homebrew packages
+if command -v brew >/dev/null 2>&1; then
+   brew update
+   brew outdated
+   brew upgrade
+   brew cleanup
+fi
+# update Flatpaks
+if command -v flatpak >/dev/null 2>&1; then
+   flatpak update
+   flatpak uninstall --unused
+fi
+}
+alias up=_update_stuffs
+
+# -- Aliases --
+alias ff='clear && fastfetch'
+alias l='ls -lA'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias rm='rm -vi'
+alias mv='mv -vi'
+alias cp='cp -vi'
+
+# -- Prompt --
 source $HOME/.dotfiles/scripts/git-prompt.sh
 export PS1='\[$(tput setaf 14)\]\u\[$(tput setaf 15)\]@\[$(tput setaf 8)\]\h \[$(tput setaf 6)\]\w\[$(tput sgr0)\] \[$(tput setaf 10)\]$(__git_ps1 "(%s) ")\[$(tput sgr0)\]\$ '
 
-export GIT_PS1_SHOWDIRTYSTATE=1
-export PATH="$HOME/.local/bin:$PATH"

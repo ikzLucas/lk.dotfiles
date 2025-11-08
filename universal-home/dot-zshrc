@@ -23,6 +23,8 @@ zinit wait lucid for \
     zsh-users/zsh-autosuggestions
 
 autoload -U compinit && compinit 
+compinit
+zstyle ':completion::complete:*' use-cache 1
 
 #############################
 ### Aliases and Functions ###
@@ -51,8 +53,7 @@ alias lah='ls -lAh'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
-# Reload zsh easily
-alias rz="source ~/.zshenv && source ~/.zprofile && source ~/.zshrc"
+
 # Extra verbosity and interactivity in common file operation commands
 rm() { command rm -vi "${@}"; }        # Interactive and verbose output for rm, cp, mv
 cp() { command cp -vi "${@}"; }        # Prevents file overwrites and explains what is happening
