@@ -49,9 +49,6 @@ install_gentoo () {
    # Configs for my desktop
    if [ $(cat /etc/hostname) = chi ]; then
       # Backup existing portage config
-      if [ -f /etc/portage/make.conf ]; then
-        sudo mv /etc/portage/make.conf /etc/portage/make.conf.old
-      fi
       pushd chi
       sudo stow .
       popd
