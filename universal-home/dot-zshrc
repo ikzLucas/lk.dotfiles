@@ -1,5 +1,5 @@
 # Lucas's Zsh config 
-# Version 25.10.r2
+# Version 25.11.r2
 
 PATH="$HOME/.local/bin:$PATH"
 
@@ -13,7 +13,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 #--Plugins - Syntax Highlight, Completions, and Autosuggestions loaded with Zinit turbo mode
-# bindkey ctrl+f accept suggestion added here to avoid conflict with async plugin loading
 zinit wait lucid for \
  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
@@ -23,7 +22,7 @@ zinit wait lucid for \
     zsh-users/zsh-autosuggestions
 
 autoload -U compinit && compinit 
-compinit
+autoload -U bashcompinit && bashcompinit
 zstyle ':completion::complete:*' use-cache 1
 
 #############################
@@ -70,12 +69,6 @@ if command -v brew >/dev/null 2>&1; then
    brew outdated
    brew upgrade
    brew cleanup
-fi
-
-# update Flatpaks
-if command -v flatpak >/dev/null 2>&1; then
-   flatpak update
-   flatpak uninstall --unused
 fi
 }
 
@@ -150,7 +143,3 @@ lk_prompt_setup "$@"
 
 # Enable vi mode for the shell
 bindkey -v
-# Search history with ctrl+p/n 
-# Ex: typing echo will search history for only other echo commands
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
