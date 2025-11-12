@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # WARNING: This script assumes it is working in the dotfiles directory it was cloned to. Moving it will probably blow something up
 
@@ -64,17 +64,17 @@ install_gentoo () {
    popd
 }
 
-if [ $OSTYPE = darwin ]; then
+if [[ $OSTYPE == *darwin* ]]; then
    install_darwin
 fi
 
 if [ $OSTYPE = linux-gnu ]; then
    install_linux
+   if [ $(cat /etc/os-release | grep ^ID) = 'ID=gentoo' ]; then
+      install_gentoo
+   fi
 fi
 
-if [ $(cat /etc/os-release | grep ^ID) = 'ID=gentoo' ]; then
-   install_gentoo
-fi
 
 pushd universal-home
 stow .
