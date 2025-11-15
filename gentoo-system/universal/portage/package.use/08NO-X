@@ -19,8 +19,7 @@ dev-util/vulkan-tools -X
 kde-plasma/kscreen -X
 media-libs/gst-plugins-base -X
 media-libs/gst-plugins-bad -X
-media-video/vlc -X
-media-video/mpv -X
+media-video/mpv -X -xv
 x11-terms/ghostty -X
 net-print/cups -X
 sys-apps/flatpak -X
