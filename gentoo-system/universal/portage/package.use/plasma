@@ -1,5 +1,6 @@
-*/* kde plasma qt6 screencast -gnome
-kde-plasma/plasma-meta -X flatpak rdp oxygen-theme
+*/* kde plasma qt6 screencast -qt5 -gnome
+kde-plasma/plasma-meta -X flatpak rdp oxygen-theme discover
+kde-plasma/discover flatpak snap firmware
 kde-plasma/plasma-login-sessions -X wayland
 net-misc/freerdp server
 dev-qt/qttools designer

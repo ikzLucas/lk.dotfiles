@@ -11,3 +11,19 @@
 #dev-python/pycairo X
 #x11-libs/libxkbcommon X
 #media-libs/libva X
+
+# Invididual package basis for now
+app-crypt/pinentry -X -gtk
+kde-frameworks/kio -X
+dev-util/vulkan-tools -X
+kde-plasma/kscreen -X
+media-libs/gst-plugins-base -X
+media-libs/gst-plugins-bad -X
+media-video/vlc -X
+media-video/mpv -X
+x11-terms/ghostty -X
+net-print/cups -X
+sys-apps/flatpak -X
+sys-apps/xdg-desktop-portal-gtk -X
+x11-apps/mesa-progs -X
+media-gfx/imagemagick -X
