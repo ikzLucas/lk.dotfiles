@@ -114,10 +114,10 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # - Tweaked path and select prompts
 # zsh prompt vcs tutorial @: https://salferrarello.com/zsh-git-status-prompt/
 lk_prompt_setup () {
-prompt_gentoo_prompt=${1:-'blue'}
-user_color=${2:-'132'}
-divider_color=${3:-'222'}
-hostname_color=${4:-'192'}
+path_color=${1:-'5'}
+user_color=${2:-'6'}
+divider_color=${3:-'2'}
+hostname_color=${4:-'15'}
 prompt_gentoo_root=${5:-'red'}
 
 if [ "$USER" = 'root' ]
@@ -125,7 +125,7 @@ then
 base_prompt="%F{$prompt_gentoo_root}%m%k "
 else
 # %B -> Bold %F -> color %n -> username %m -> short hostname
-base_prompt="%F{$user_color}%n%F{$divider_color}@%F{$hostname_color}%m%k "
+base_prompt="%F{$divider_color}[%F{$user_color}%n%F{$divider_color}@%F{$hostname_color}%m%k%F{$divider_color}] "
 fi
 post_prompt="%b%f%k"
 
@@ -142,7 +142,7 @@ zstyle ':vcs_info:*' stagedstr ' +'
 zstyle ':vcs_info:git:*' formats       ' (%b%u%c)'
 zstyle ':vcs_info:git:*' actionformats ' (%b|%a%u%c)'
 
-path_prompt="%F{$prompt_gentoo_prompt}%1~"
+path_prompt="%F{$path_color}%1~"
 PS1="$base_prompt$path_prompt$vcs_prompt %# $post_prompt"
 PS2="$path_prompt %_> $post_prompt"
 PS3="$path_prompt ?# $post_prompt"
