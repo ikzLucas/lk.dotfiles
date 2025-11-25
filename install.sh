@@ -1,5 +1,9 @@
 #/usr/bin/env bash
 
+# Todo: safe rewrite
+# Make directories when needed
+# start systemd services automagically
+
 # WARNING: This script assumes it is working in the dotfiles directory it was cloned to. Moving it will probably blow something up
 
 if ! command -v sudo >/dev/null 2>&1; then 
@@ -64,6 +68,12 @@ install_gentoo () {
    popd
 }
 
+install_arch () {
+   pushd arch-system
+   sudo stow .
+   popd
+}
+
 if [ $OSTYPE = darwin ]; then
    install_darwin
 fi
@@ -74,6 +84,8 @@ fi
 
 if [ $(cat /etc/os-release | grep ^ID) = 'ID=gentoo' ]; then
    install_gentoo
+elif [ $(cat /etc/os-release | grep ^ID) = 'ID=arch' ]; then
+   install_arch
 fi
 
 pushd universal-home
