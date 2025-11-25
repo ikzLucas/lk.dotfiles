@@ -1,7 +1,11 @@
 # Lucas's Zsh config 
-# Version 25.11.r2
+# Version 25.11.r3
 
 PATH="$HOME/.local/bin:$PATH"
+
+if [[ -z "${SSH_CONNECTION}" ]] && [ $(uname -s) = "Linux" ]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
 
 #########################
 ### Plugin Management ###
@@ -58,6 +62,11 @@ if ! command -v sudo >/dev/null 2>&1; then
    echo "Install sudo you dingus"
 fi
 
+# update Arch packages
+if command -v yay >/dev/null 2>&1; then
+   sudo pacman -Syu && yay -Sua
+fi
+
 # update Gentoo packages
 if command -v emerge >/dev/null 2>&1; then
    sudo emerge --ask --verbose --update --deep --newuse @world
@@ -77,12 +86,12 @@ alias up=_update_stuffs
 #####################
 ### Shell Options ###
 #####################
-setopt correctall 
+setopt correct_all 
 export HISTSIZE=5000
 export SAVEHIST=$HISTSIZE
 export HISTFILE=~/.zsh_history
-setopt appendhistory
-setopt sharehistory
+setopt hist_append
+setopt share_history
 setopt hist_ignore_all_dups
 setopt hist_ignore_dups
 setopt hist_save_no_dups
