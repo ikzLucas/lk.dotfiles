@@ -122,10 +122,10 @@ prompt_gentoo_root=${5:-'red'}
 
 if [ "$USER" = 'root' ]
 then
-base_prompt="%B%F{$prompt_gentoo_root}%m%k "
+base_prompt="%F{$prompt_gentoo_root}%m%k "
 else
 # %B -> Bold %F -> color %n -> username %m -> short hostname
-base_prompt="%B%F{$user_color}%n%F{$divider_color}@%F{$hostname_color}%m%k "
+base_prompt="%F{$user_color}%n%F{$divider_color}@%F{$hostname_color}%m%k "
 fi
 post_prompt="%b%f%k"
 
@@ -142,7 +142,7 @@ zstyle ':vcs_info:*' stagedstr ' +'
 zstyle ':vcs_info:git:*' formats       ' (%b%u%c)'
 zstyle ':vcs_info:git:*' actionformats ' (%b|%a%u%c)'
 
-path_prompt="%B%F{$prompt_gentoo_prompt}%1~"
+path_prompt="%F{$prompt_gentoo_prompt}%1~"
 PS1="$base_prompt$path_prompt$vcs_prompt %# $post_prompt"
 PS2="$path_prompt %_> $post_prompt"
 PS3="$path_prompt ?# $post_prompt"
