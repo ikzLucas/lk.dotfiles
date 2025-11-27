@@ -51,6 +51,9 @@ alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 
+alias vim=nvim
+alias v=nvim
+
 # Extra verbosity and interactivity in common file operation commands
 rm() { command rm -vi "${@}"; }        # Interactive and verbose output for rm, cp, mv
 cp() { command cp -vi "${@}"; }        # Prevents file overwrites and explains what is happening
@@ -125,6 +128,7 @@ then
 base_prompt="%F{$prompt_gentoo_root}%m%k "
 else
 # %B -> Bold %F -> color %n -> username %m -> short hostname
+# 		[		username		@		hostname		]
 base_prompt="%F{$divider_color}[%F{$user_color}%n%F{$divider_color}@%F{$hostname_color}%m%k%F{$divider_color}] "
 fi
 post_prompt="%b%f%k"

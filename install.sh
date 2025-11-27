@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Todo: safe rewrite
 # Make directories when needed
@@ -14,19 +14,19 @@ fi
 # Configs specific to macOS + apps I use on my mac
 # stows configs from darwin-home/dot-config to ~/.config/
 install_darwin () {
-   pushd darwin-home
+   pushd darwin-home || return
    stow .
-   popd
+   popd || return
 }
 
 # Generic Linux dotfiles / configs
 install_linux () {
-   pushd linux-home
+   pushd linux-home || return
    stow .
-   popd
-   pushd linux-gnu
+   popd || return
+   pushd linux-gnu || return
    sudo stow .
-   popd
+   popd || return
 }
 
 # System level configs for Gentoo (Kernel + Portage config)
@@ -37,62 +37,66 @@ install_gentoo () {
 
    # Ensure git is installed before switching to git-based repositories
    if ! command -v git >/dev/null 2>&1; then
-      emerge --ask=n dev-vcs/git
+      sudo emerge --ask=n dev-vcs/git
    fi
 
    
-   pushd gentoo-system
+   pushd gentoo-system || return
    
    # Install configs compatible with (most) computers
    # This will blow up systems with btrfs
    # They deserve it
-   pushd universal
+   pushd universal || return
    sudo stow .
-   popd
+   popd || return
    
    # Configs for my desktop
-   if [ $(cat /etc/hostname) = chi ]; then
+   if [ "$(cat /etc/hostname)" = chi ]; then
       # Backup existing portage config
-      pushd chi
+      pushd chi || return
       sudo stow .
-      popd
+      popd || return
    fi
 
    # Configs for my thinkpad
-   if [ $(cat /etc/hostname) = raven ]; then
-      pushd raven
+   if [ "$(cat /etc/hostname)" = raven ]; then
+      pushd raven || return
       sudo stow .
-      popd
+      popd || return
    fi
 
-   popd
+   popd || return
 }
 
 install_arch () {
-   pushd arch-system
+   if ! command -v git >/dev/null 2>&1; then
+       sudo pacman -S --noconfirm git
+   fi
+
+   pushd arch-system || return
    sudo stow .
-   popd
+   popd || return
 }
 
-if [ $OSTYPE = darwin ]; then
+if [ "$OSTYPE" = "darwin" ]; then
    install_darwin
 fi
 
-if [ $OSTYPE = linux-gnu ]; then
+if [ "$OSTYPE" = "linux-gnu" ]; then
    install_linux
 fi
 
-if [ $(cat /etc/os-release | grep ^ID) = 'ID=gentoo' ]; then
+if [ "$(cat /etc/os-release | grep ^ID)" = 'ID=gentoo' ]; then
    install_gentoo
-elif [ $(cat /etc/os-release | grep ^ID) = 'ID=arch' ]; then
+elif [ "$(cat /etc/os-release | grep ^ID)" = 'ID=arch' ]; then
    install_arch
 fi
 
-pushd universal-home
+pushd universal-home || return
 stow .
-popd
+popd || return
 
-pushd local-bin
+pushd local-bin || return
 chmod +x ./*
 stow .
-popd
+popd || return
