@@ -3,3 +3,14 @@
 # required by @selected
 # required by @world (argument)
 >=virtual/zlib-1.3.1-r1 abi_x86_32
+# required by media-libs/tiff-4.7.0-r1::gentoo[webp]
+# required by media-gfx/imagemagick-7.1.2.3-r1::gentoo[tiff]
+# required by app-misc/fastfetch-2.53.0::gentoo[imagemagick]
+# required by @selected
+# required by @world (argument)
+>=media-libs/libwebp-1.5.0 abi_x86_32
+# required by media-plugins/gst-plugins-gtk-1.24.11::gentoo
+# required by gnome-extra/sushi-46.0::gentoo
+# required by gnome-base/nautilus-48.4.1::gentoo[previewer]
+# required by nautilus (argument)
+>=media-libs/gst-plugins-base-1.24.11-r1 X
