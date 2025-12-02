@@ -4,6 +4,10 @@
 environment {
     QT_QPA_PLATFORMTHEME "qt6ct"
     XDG_MENU_PREFIX "arch-"
+    LIBVA_DRIVER_NAME "nvidia"
+   __GLX_VENDOR_LIBRARY_NAME "nvidia"
+   NVD_BACKEND "direct"
+   ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
 // https://yalter.github.io/niri/Configuration:-Input
@@ -174,6 +178,7 @@ binds {
     Mod+Shift+Return hotkey-overlay-title="Open a Terminal: Ghostty" { spawn "ghostty"; }
     Alt+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Alt+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock -eFfkl -c 000000"; }
+    Mod+G hotkey-overlay-title="Launch the file manager: Dolphin" { spawn "dolphin"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
