@@ -35,10 +35,8 @@ Windows support in the future maybe
 | Config           | MacOS | Gentoo |
 |:----------------:|:-----:|:------:|
 |Zsh               |✅     |✅      |
-|Neovim            |✅     |✅      |
 |Tmux              |✅     |✅      |
 |Ghostty           |✅     |ℹ️      |
-|sway              |ℹ️     |✅      |
 |Niri              |ℹ️     |✅      |
 |xdg-desktop-portal|ℹ️     |✅      |
 |yt-dlp            |✅     |✅      |
