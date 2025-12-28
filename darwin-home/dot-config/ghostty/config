@@ -1,2 +1,4 @@
 font-family = FiraCode Nerd Font Mono
-theme = Gruvbox Dark Hard
+theme = Kanagawa Wave
+cursor-color=cell-foreground
+cursor-text=cell-background
