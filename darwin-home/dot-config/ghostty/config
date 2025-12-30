@@ -1,4 +1,12 @@
-font-family = FiraCode Nerd Font Mono
+# Font
+font-family = Iosevka Nerd Font Mono
+font-size = 18
+
+# Window settings
+window-width = 180
+window-height = 40
+
+# Theme
 theme = Kanagawa Wave
 cursor-color=cell-foreground
 cursor-text=cell-background
