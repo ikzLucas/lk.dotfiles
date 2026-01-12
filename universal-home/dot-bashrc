@@ -32,31 +32,6 @@ shopt -s histappend
 # Use ** to match a files and directories
 shopt -s globstar
 
-# -- Functions --
-_update_stuffs() {
-# check for sudo
-if ! command -v sudo >/dev/null 2>&1; then
-   echo "Install sudo you dingus"
-fi
-# update Gentoo packages
-if command -v emerge >/dev/null 2>&1; then
-   sudo emerge --ask --verbose --update --deep --newuse @world
-fi
-# update Homebrew packages
-if command -v brew >/dev/null 2>&1; then
-   brew update
-   brew outdated
-   brew upgrade
-   brew cleanup
-fi
-# update Flatpaks
-if command -v flatpak >/dev/null 2>&1; then
-   flatpak update
-   flatpak uninstall --unused
-fi
-}
-alias up=_update_stuffs
-
 # -- Aliases --
 alias ff='clear && fastfetch'
 alias l='ls -lA'

@@ -55,33 +55,6 @@ rm() { command rm -vi "${@}"; }        # Interactive and verbose output for rm, 
 cp() { command cp -vi "${@}"; }        # Prevents file overwrites and explains what is happening
 mv() { command mv -vi "${@}"; }        # EX: mv file file2 outputs "renamed file -> file2"
 
-_update_stuffs() {
-# check for sudo
-if ! command -v sudo >/dev/null 2>&1; then
-   echo "Install sudo you dingus"
-fi
-
-# update Arch packages
-if command -v yay >/dev/null 2>&1; then
-   sudo pacman -Syu && yay -Sua
-fi
-
-# update Gentoo packages
-if command -v emerge >/dev/null 2>&1; then
-   sudo emerge --ask --verbose --update --deep --newuse @world
-fi
-
-# update Homebrew packages
-if command -v brew >/dev/null 2>&1; then
-   brew update
-   brew outdated
-   brew upgrade
-   brew cleanup
-fi
-}
-
-alias up=_update_stuffs
-
 #####################
 ### Shell Options ###
 #####################
