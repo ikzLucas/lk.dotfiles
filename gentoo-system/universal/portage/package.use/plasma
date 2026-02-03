@@ -10,3 +10,9 @@ kde-plasma/plasma-firewall ufw -firewalld
 kde-plasma/plasma-workspace -fontconfig
 x11-misc/sddm -X
 kde-apps/ark zip
+# required by kde-frameworks/kimageformats-6.22.0-r1::gentoo[heif]
+# required by kde-plasma/kscreen-6.5.5::gentoo
+# required by kde-plasma/plasma-meta-6.5.5-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/libheif-1.20.2 x265
