@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
-<<<<<<< HEAD
-=======
 
 # Todo: safe rewrite
 # Make directories when needed
 # start systemd services automagically
->>>>>>> 34b7852e8eef5785ff486541ad29c8ac05f70d25
 
 # WARNING: This script assumes it is working in the dotfiles directory it was cloned to. Moving it will probably blow something up
 
@@ -71,7 +68,6 @@ install_gentoo () {
    popd || return
 }
 
-<<<<<<< HEAD
 if [[ $OSTYPE == *darwin* ]]; then
 =======
 install_arch () {
@@ -85,7 +81,6 @@ install_arch () {
 }
 
 if [ "$OSTYPE" = "darwin" ]; then
->>>>>>> 34b7852e8eef5785ff486541ad29c8ac05f70d25
    install_darwin
 fi
 
@@ -96,14 +91,12 @@ if [ "$OSTYPE" = "linux-gnu" ]; then
    fi
 fi
 
-<<<<<<< HEAD
 =======
 if [ "$(cat /etc/os-release | grep ^ID)" = 'ID=gentoo' ]; then
    install_gentoo
 elif [ "$(cat /etc/os-release | grep ^ID)" = 'ID=arch' ]; then
    install_arch
 fi
->>>>>>> 34b7852e8eef5785ff486541ad29c8ac05f70d25
 
 pushd universal-home || return
 stow .

@@ -1,0 +1,13 @@
+- name: Stuff
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Install iina
+      community.general.homebrew_cask:
+        name: iina
+        state: present
+    - name: ...as an mpv replacement
+      community.general.homebrew_cask:
+        name: stolendata-mpv
+        state: absent
+
