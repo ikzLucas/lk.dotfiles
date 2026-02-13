@@ -10,3 +10,6 @@ window-height = 40
 theme = Kanagawa Wave
 cursor-color=cell-foreground
 cursor-text=cell-background
+
+# Fix unsuitible term for ssh environment 
+shell-integration-features = ssh-terminfo,ssh-env
