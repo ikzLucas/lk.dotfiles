@@ -65,7 +65,7 @@ sleep $SLOW
 # --- CONFIG ---
 CONF_DIR="$DOTFILES_DIR/config"
 CONF_TARGET="$HOME/.config"
-CONFIGS=("tmux" "ghostty" "mpv" "yt-dlp")
+CONFIGS=("tmux" "ghostty" "mpv" "yt-dlp" "nvim")
 
 mkdir -p "$CONF_TARGET"
 mkdir -p "$OLD_FILES"
