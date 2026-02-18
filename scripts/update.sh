@@ -13,7 +13,7 @@ else
    exit 0
 fi
 
-echo "Escalating using $ESCALTE"
+echo "Privledge escalation will use $ESCALTE"
 
 # Update Gentoo packages
 if command -v emerge >/dev/null 2>&1; then
@@ -42,4 +42,15 @@ fi
 # Update AUR packages with yay
 if command -v yay >/dev/null 2>&1; then
    yay -Sua
+fi
+
+# Update Ubuntu / Debian
+if command -v apt >/dev/null 2>&1; then
+   $ESCALTE apt update
+   $ESCALTE apt upgrade
+fi
+
+# Fedora / newer RHEL --- REQUIRES DNF 5
+if command -v dnf >/dev/null 2>&1; then
+   $ESCALTE dnf upgrade
 fi

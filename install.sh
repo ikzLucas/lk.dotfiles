@@ -19,12 +19,21 @@ read -p "Press Enter to continue, Ctrl+C to cancel..." -r
 echo -e "$INFO Dotfiles folder is: $DOTFILES_DIR"
 
 sleep $SLOW
+echo "Creating stash for old files"
+mkdir -p $OLD_FILES
+
+sleep $SLOW
 echo -e "Creating ~/.local/bin"
 mkdir -p $HOME/.local/bin
 
 sleep $SLOW
-echo "Creating stash for old files"
-mkdir -p $OLD_FILES
+SCRIPT_DIR=$DOTFILES_DIR/scripts
+echo "Making scripts executable"
+chmod +x $SCRIPT_DIR/git-prompt.sh $SCRIPT_DIR/update.sh
+if [ ! -L "$HOME/.local/bin/up" ]; then
+   echo -e "$INSTALL $SCRIPT_DIR/update.sh -> $HOME/.local/bin/up"
+   ln -s $SCRIPT_DIR/update.sh $HOME/.local/bin/up
+fi
 
 sleep $SLOW
 # --- SHELL ---
@@ -86,3 +95,6 @@ for d in "${CONFIGS[@]}"; do
   fi
 done
 
+sleep $SLOW
+
+echo -e "\033[0;32mDONE!\033[0m Please review any skipped links - old symlinks are not overridden automatically. You may update your system regardless of package manager using 'up'."
