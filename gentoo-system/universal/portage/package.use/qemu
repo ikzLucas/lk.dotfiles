@@ -1,1 +1,0 @@
-app-emulation/qemu -alsa -pulseaudio pipewire zstd -bzip2

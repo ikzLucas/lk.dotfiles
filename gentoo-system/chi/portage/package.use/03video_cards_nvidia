@@ -1,6 +1,0 @@
-# This file is preferred to VIDEO_CARDS in make.conf because of the ability to use -* to unset unneeded cards
-# Nvidia
-*/* VIDEO_CARDS: -* nvidia
-*/* nvenc nvidia
-x11-drivers/nvidia-drivers kernel-open tools
-virtual/zlib abi_x86_32

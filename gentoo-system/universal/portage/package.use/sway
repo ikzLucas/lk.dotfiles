@@ -1,3 +1,0 @@
-gui-wm/sway tray
-gui-apps/swaybg gdk-pixbuf
-gui-apps/rofi-wayland windowmode

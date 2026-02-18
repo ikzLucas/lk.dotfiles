@@ -1,108 +1,88 @@
 #!/usr/bin/env bash
 
-# Todo: safe rewrite
-# Make directories when needed
-# start systemd services automagically
+# pretty colors
+INFO="\033[0;36mINFO:\033[0m"
+WARNING="\033[41;37mWARNING:\033[0m"
+SKIP="\033[0;33mSKIP:\033[0m"
+INSTALL="\033[0;32mINSTALL:\033[0m"
+MOVE="\033[0;35mMOVE:\033[0m"
 
-# WARNING: This script assumes it is working in the dotfiles directory it was cloned to. Moving it will probably blow something up
+DOTFILES_DIR=$(pwd)
+OLD_FILES=$DOTFILES_DIR/.old
 
-if ! command -v sudo >/dev/null 2>&1; then 
-   echo "Install sudo you dipstick"
-   exit 1
-fi
+SLOW=0.8
 
-# Configs specific to macOS + apps I use on my mac
-# stows configs from darwin-home/dot-config to ~/.config/
-install_darwin () {
-   pushd darwin-home || return
-   stow .
-   popd || return
-}
+echo -e "$WARNING This script's configs take precedent! It will move all of your old versions of its files to $DOTFILES_DIR/.old"
+read -p "Press Enter to continue, Ctrl+C to cancel..." -r
 
-# Generic Linux dotfiles / configs
-install_linux () {
-   pushd linux-home || return
-   stow .
-   popd || return
-   pushd linux-gnu || return
-   sudo stow .
-   popd || return
-}
+# --- SETUP ---
+echo -e "$INFO Dotfiles folder is: $DOTFILES_DIR"
 
-# System level configs for Gentoo (Kernel + Portage config)
-install_gentoo () {
-   if ! [ -d /etc/kernel/config.d ]; then 
-      sudo mkdir /etc/kernel/config.d
+sleep $SLOW
+echo -e "Creating ~/.local/bin"
+mkdir -p $HOME/.local/bin
+
+sleep $SLOW
+echo "Creating stash for old files"
+mkdir -p $OLD_FILES
+
+sleep $SLOW
+# --- SHELL ---
+SHELL_DIR=$DOTFILES_DIR/shell
+SHELL_CONF=("bashrc" "zshrc" "zshenv" "zprofile")
+
+echo -e "$INFO Linking shell configs"
+sleep $SLOW
+for f in "${SHELL_CONF[@]}"; do
+   link="$HOME/.$f"
+   target="$SHELL_DIR/$f"
+
+   sleep 0.1
+   if [ -L "$link" ]; then
+      echo -e "$SKIP $link is already a symlink"
+   elif [ -e "$link" ]; then
+      echo -e "$MOVE $link backed up to $OLD_FILES"
+      mv "$link" "$OLD_FILES"
+
+      ln -s "$target" "$link"
+      echo -e "$INSTALL $target -> $link"
+   else
+      ln -s "$target" "$link"
+      echo -e "$INSTALL $target -> $link"
    fi
+done
 
-   # Ensure git is installed before switching to git-based repositories
-   if ! command -v git >/dev/null 2>&1; then
-      sudo emerge --ask=n dev-vcs/git
-   fi
+sleep $SLOW
+# --- CONFIG ---
+CONF_DIR="$DOTFILES_DIR/config"
+CONF_TARGET="$HOME/.config"
+CONFIGS=("tmux" "ghostty" "mpv" "yt-dlp")
 
-   
-   pushd gentoo-system || return
-   
-   # Install configs compatible with (most) computers
-   # This will blow up systems with btrfs
-   # They deserve it
-   pushd universal || return
-   sudo stow .
-   popd || return
-   
-   # Configs for my desktop
-   if [ "$(cat /etc/hostname)" = chi ]; then
-      # Backup existing portage config
-      pushd chi || return
-      sudo stow .
-      popd || return
-   fi
+mkdir -p "$CONF_TARGET"
+mkdir -p "$OLD_FILES"
 
-   # Configs for my thinkpad
-   if [ "$(cat /etc/hostname)" = raven ]; then
-      pushd raven || return
-      sudo stow .
-      popd || return
-   fi
+echo -e "$INFO Linking dotfile configs"
+sleep "$SLOW"
 
-   popd || return
-}
+for d in "${CONFIGS[@]}"; do
+  link="$CONF_TARGET/$d"
+  target="$CONF_DIR/$d"
 
-if [[ $OSTYPE == *darwin* ]]; then
-=======
-install_arch () {
-   if ! command -v git >/dev/null 2>&1; then
-       sudo pacman -S --noconfirm git
-   fi
+  sleep 0.1
 
-   pushd arch-system || return
-   sudo stow .
-   popd || return
-}
+  if [ -L "$link" ]; then
+    echo -e "$SKIP $link is already a symlink"
 
-if [ "$OSTYPE" = "darwin" ]; then
-   install_darwin
-fi
+  elif [ -e "$link" ]; then
+    echo -e "$MOVE $link backed up to $OLD_FILES"
+    mv "$link" "$OLD_FILES/"
 
-if [ "$OSTYPE" = "linux-gnu" ]; then
-   install_linux
-   if [ $(cat /etc/os-release | grep ^ID) = 'ID=gentoo' ]; then
-      install_gentoo
-   fi
-fi
+    ln -s "$target" "$link"
+    echo -e "$INSTALL $target -> $link"
 
-=======
-if [ "$(cat /etc/os-release | grep ^ID)" = 'ID=gentoo' ]; then
-   install_gentoo
-elif [ "$(cat /etc/os-release | grep ^ID)" = 'ID=arch' ]; then
-   install_arch
-fi
+  else
+    ln -s "$target" "$link"
+    echo -e "$INSTALL $target -> $link"
+  fi
+done
 
-pushd universal-home || return
-stow .
-popd || return
-
-pushd local-bin || return
-chmod +x ./*
-stow .
-popd || return
