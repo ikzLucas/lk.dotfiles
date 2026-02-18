@@ -8,7 +8,7 @@ git clone https://github.com/ikzLucas/lk.dotfiles.git ~/.dotfiles && cd ~/.dotfi
 ```
 
 
-*Current contents:*
+*Stuff:*
 - [x] Zsh config
 - [x] Bash config
 - [x] Tmux config              
@@ -17,3 +17,6 @@ git clone https://github.com/ikzLucas/lk.dotfiles.git ~/.dotfiles && cd ~/.dotfi
 - [x] mpv config 
 - [x] neovim config
 - [x] neat update script to update any unixlike system
+- [ ] help script to explain included utilities / scripts
+- [ ] maybe move all symlinked scripts to a folder within .local/bin or a seperate folder entirely
+- [ ] some kind of deployment scripts for installing the apps in the repo - install script should ask if you want to run this

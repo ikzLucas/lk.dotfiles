@@ -10,10 +10,14 @@ MOVE="\033[0;35mMOVE:\033[0m"
 DOTFILES_DIR=$(pwd)
 OLD_FILES=$DOTFILES_DIR/.old
 
-SLOW=0.8
+SLOW="${SLOW:-0.8}"
+SLOW2="${SLOW:-0.1}"
+PAUSE="${PAUSE:-1}"
 
 echo -e "$WARNING This script's configs take precedent! It will move all of your old versions of its files to $DOTFILES_DIR/.old"
-read -p "Press Enter to continue, Ctrl+C to cancel..." -r
+if [ "$PAUSE" -eq 1 ]; then
+   read -p "Press Enter to continue, Ctrl+C to cancel..." -r
+fi
 
 # --- SETUP ---
 echo -e "$INFO Dotfiles folder is: $DOTFILES_DIR"
@@ -29,7 +33,7 @@ mkdir -p $HOME/.local/bin
 sleep $SLOW
 SCRIPT_DIR=$DOTFILES_DIR/scripts
 echo "Making scripts executable"
-chmod +x $SCRIPT_DIR/git-prompt.sh $SCRIPT_DIR/update.sh
+chmod +x $SCRIPT_DIR/*
 if [ ! -L "$HOME/.local/bin/up" ]; then
    echo -e "$INSTALL $SCRIPT_DIR/update.sh -> $HOME/.local/bin/up"
    ln -s $SCRIPT_DIR/update.sh $HOME/.local/bin/up
@@ -46,7 +50,7 @@ for f in "${SHELL_CONF[@]}"; do
    link="$HOME/.$f"
    target="$SHELL_DIR/$f"
 
-   sleep 0.1
+   sleep $SLOW2
    if [ -L "$link" ]; then
       echo -e "$SKIP $link is already a symlink"
    elif [ -e "$link" ]; then
@@ -77,7 +81,7 @@ for d in "${CONFIGS[@]}"; do
   link="$CONF_TARGET/$d"
   target="$CONF_DIR/$d"
 
-  sleep 0.1
+  sleep $SLOW2
 
   if [ -L "$link" ]; then
     echo -e "$SKIP $link is already a symlink"
