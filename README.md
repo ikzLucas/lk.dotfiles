@@ -15,3 +15,5 @@ git clone https://github.com/ikzLucas/lk.dotfiles.git ~/.dotfiles && cd ~/.dotfi
 - [x] Ghostty config
 - [x] yt-dlp config 
 - [x] mpv config 
+- [x] neovim config
+- [x] neat update script to update any unixlike system
