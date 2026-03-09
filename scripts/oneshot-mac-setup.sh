@@ -20,4 +20,7 @@ ansible-galaxy collection install community.general
 ansible-playbook -i ./ansible/inventory ./ansible/darwin.yml
 
 # Install the dotfiles
-../install.sh
+PAUSE=0 ../install.sh
+
+#update system using installed update script
+up
