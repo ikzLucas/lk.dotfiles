@@ -66,13 +66,15 @@
           - steam
         state: present
     
-    - name: Look I made another category 
+    - name: random tools idk
       community.general.homebrew_cask:
         name:
           - affinity
           - discord
           - vivaldi
           - keka
+          - pearcleaner
+          - musicbrainz-picard
         state: present
     
     - name: Install fonts
@@ -83,7 +85,7 @@
           - font-iosevka-nerd-font
         state: present
 
-    - name: lol'ing at chrome users
+    - name: INCREDIBLY helpful task
       community.general.homebrew_cask:
         name:
           - google-chrome
