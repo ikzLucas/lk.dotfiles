@@ -1,13 +1,91 @@
-- name: Stuff
-  hosts: localhost
+- hosts: localhost
   gather_facts: true
+  
   tasks:
-    - name: Install iina
-      community.general.homebrew_cask:
-        name: iina
-        state: present
-    - name: ...as an mpv replacement
-      community.general.homebrew_cask:
-        name: stolendata-mpv
-        state: absent
+  
+    - name: Dock on da left
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: orientation
+        type: string
+        value: left
 
+    - name: Speed up key repeat
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: KeyRepeat
+        type: float
+        value: 1
+
+    - name: Set minimum initial key repeat delay
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: InitialKeyRepeat
+        type: float
+        value: 25
+
+    - name: Disable press and hold for keys in favor of key repeat
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: ApplePressAndHoldEnabled
+        type: bool
+        value: false
+
+    - name: Install CLI stuffs
+      community.general.homebrew:
+        name:
+          - git
+          - tmux
+          - btop
+          - asciiquarium
+          - fastfetch
+          - tree
+          - bash
+          - lolcat
+        state: present
+
+    - name: stuff from head
+      community.general.homebrew:
+        name:
+          - neovim
+        state: head
+    
+    - name: Install coding stuff
+      community.general.homebrew_cask:
+        name:
+          - ghostty
+          - jetbrains-toolbox
+          - visual-studio-code
+        state: present
+
+    - name: Install entertainmentslop
+      community.general.homebrew_cask:
+        name:
+          - iina
+          - jellyfin-media-player
+          - steam
+        state: present
+    
+    - name: Look I made another category 
+      community.general.homebrew_cask:
+        name:
+          - affinity
+          - discord
+          - vivaldi
+          - keka
+        state: present
+    
+    - name: Install fonts
+      community.general.homebrew_cask:
+        name:
+          - font-jetbrains-mono
+          - font-jetbrains-mono-nerd-font
+          - font-iosevka-nerd-font
+        state: present
+
+    - name: lol'ing at chrome users
+      community.general.homebrew_cask:
+        name:
+          - google-chrome
+          - stolendata-mpv
+        state: absent 
