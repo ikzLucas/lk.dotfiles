@@ -1,7 +1,16 @@
 # Lucas's Zsh config 
-# Version 25.11.r3
+# Version 26.03.r1
 
-PATH="$HOME/.local/bin:$PATH"
+# Core 
+##########################
+### Core Functionality ###
+##########################
+path=("$HOME/.local/bin" $path)
+fpath=("$HOME/.docker/completions" $fpath)
+
+autoload -Uz compinit bashcompinit
+compinit
+bashcompinit
 
 #########################
 ### Plugin Management ###
@@ -14,16 +23,12 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 #--Plugins - Syntax Highlight, Completions, and Autosuggestions loaded with Zinit turbo mode
 zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start;" \
-    zsh-users/zsh-autosuggestions
+  zsh-users/zsh-completions \
+  zsh-users/zsh-autosuggestions \
+  zdharma-continuum/fast-syntax-highlighting
 
-autoload -U compinit && compinit 
-autoload -U bashcompinit && bashcompinit
-zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache/zsh
 
 #############################
 ### Aliases and Functions ###
@@ -37,8 +42,6 @@ alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 # Extra LS command shorthand
 alias lah='ls -lAh'
 alias la='ls -lA'
@@ -51,21 +54,20 @@ alias vim=nvim
 alias v=nvim
 
 # Extra verbosity and interactivity in common file operation commands
-rm() { command rm -vi "${@}"; }        # Interactive and verbose output for rm, cp, mv
-cp() { command cp -vi "${@}"; }        # Prevents file overwrites and explains what is happening
-mv() { command mv -vi "${@}"; }        # EX: mv file file2 outputs "renamed file -> file2"
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias rm='rm -vi'
 
 #####################
 ### Shell Options ###
 #####################
-setopt correct_all 
+setopt correct
 export HISTSIZE=5000
 export SAVEHIST=$HISTSIZE
-export HISTFILE=~/.zsh_history
+export HISTFILE=~/.cache/zsh_history
 setopt hist_append
 setopt share_history
 setopt hist_ignore_all_dups
-setopt hist_ignore_dups
 setopt hist_save_no_dups
 setopt hist_ignore_space
 setopt hist_find_no_dups
@@ -77,56 +79,8 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-####################
-### Shell Prompt ###
-####################
-# A zsh prompt loosely based off Gentoo prompt with a few mods:
-# - Multicolor!
-# - VCS info 
-# - Tweaked path and select prompts
-# zsh prompt vcs tutorial @: https://salferrarello.com/zsh-git-status-prompt/
-lk_prompt_setup () {
-path_color=${1:-'5'}
-user_color=${2:-'6'}
-divider_color=${3:-'2'}
-hostname_color=${4:-'15'}
-prompt_gentoo_root=${5:-'red'}
-
-if [ "$USER" = 'root' ]
-then
-base_prompt="%F{$prompt_gentoo_root}%m%k "
-else
-# %B -> Bold %F -> color %n -> username %m -> short hostname
-# 		[		username		@		hostname		]
-base_prompt="%F{$divider_color}[%F{$user_color}%n%F{$divider_color}@%F{$hostname_color}%m%k%F{$divider_color}] "
-fi
-post_prompt="%b%f%k"
-
-# show VCS info in prompt
-autoload -Uz add-zsh-hook vcs_info
-setopt prompt_subst
-add-zsh-hook precmd vcs_info
-vcs_prompt='%F{red}${vcs_info_msg_0_}%f'
-
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr ' *'
-zstyle ':vcs_info:*' stagedstr ' +'
-# Set the format of the Git information for vcs_info
-zstyle ':vcs_info:git:*' formats       ' (%b%u%c)'
-zstyle ':vcs_info:git:*' actionformats ' (%b|%a%u%c)'
-
-path_prompt="%F{$path_color}%1~"
-PS1="$base_prompt$path_prompt$vcs_prompt %# $post_prompt"
-PS2="$path_prompt %_> $post_prompt"
-PS3="$path_prompt ?# $post_prompt"
-}
-
-lk_prompt_setup "$@"
-
 # Enable vi mode for the shell
 bindkey -v
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/lk/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
+
+# Starship prompt
+eval "$(starship init zsh)"

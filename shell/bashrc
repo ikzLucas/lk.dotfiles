@@ -1,5 +1,5 @@
 # Lucas's Bash RC
-# Version 2025-11-04
+# Version 2026-03-14
 
 if [[ $- != *i* ]] ; then
 	return
@@ -22,8 +22,6 @@ alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 
 # No duplicates or lines starting with spaces in history
 HISTCONTROL=ignoreboth
@@ -43,6 +41,4 @@ alias mv='mv -vi'
 alias cp='cp -vi'
 
 # -- Prompt --
-source $HOME/.dotfiles/scripts/git-prompt.sh
-export PS1='\[$(tput setaf 14)\]\u\[$(tput setaf 15)\]@\[$(tput setaf 8)\]\h \[$(tput setaf 6)\]\w\[$(tput sgr0)\] \[$(tput setaf 10)\]$(__git_ps1 "(%s) ")\[$(tput sgr0)\]\$ '
-
+eval "$(starship init bash)"
